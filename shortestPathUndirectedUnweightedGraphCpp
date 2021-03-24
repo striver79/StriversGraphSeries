@@ -1,0 +1,27 @@
+void BFS(vector<int> adj[], int N, int src) 
+{ 
+	int vis[V] = {0}; 
+	int dist[N] = {0}; 
+
+	queue<int>  q;
+	
+	vis[src] = true; 
+	dist[src] = 0;
+	q.push(src); 
+
+	while(q.empty()==false) 
+	{ 
+		int node = q.front(); 
+		q.pop();
+		 
+		for(auto it:adj[node]){
+		    if(!vis[it]){
+		        dist[it]=dist[node]+1;
+		        vis[it]=1;
+		        q.push(it);
+		    }
+		} 
+	} 
+	for(int i = 0;i<N;i++) cout << dist[i] << " "; 
+	
+} 
