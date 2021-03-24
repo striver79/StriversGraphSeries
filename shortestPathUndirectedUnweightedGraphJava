@@ -1,0 +1,35 @@
+
+
+	private void shortestPath(ArrayList<ArrayList<Integer>> adj,int N,int src) 
+	{ 
+		int[] vis = new int[N]; 
+		int[] dist = new int[N]; 
+    	for(int i = 0; i < N; i++) 
+    		vis[i] = false; 
+    
+    	Queue<Integer> q=new LinkedList<>();
+    	
+    	
+    	vis[src] = true; 
+    	dist[src] = 0;
+    	q.add(src); 
+    
+    	while(q.isEmpty()==false) 
+    	{ 
+    		int node = q.poll();  
+    		 
+    		for(int it:adj.get(u)){
+    		    if(vis[it]==false){
+    		        dist[it]=dist[node]+1;
+    		        vis[node]=true;
+    		        q.add(it);
+    		    }
+    		} 
+    	}
+    	
+    	for(int i = 0;i < N;i++) {
+    	    System.out.print(dist[i] + " "); 
+    	}
+	} 
+
+	
