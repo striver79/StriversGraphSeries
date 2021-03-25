@@ -1,11 +1,13 @@
+
+
+
+
 void BFS(vector<int> adj[], int N, int src) 
 { 
-	int vis[V] = {0}; 
-	int dist[N] = {0}; 
-
+	int dist[N];
+	for(int i = 0;i<N;i++) dist[i] = INT_MAX; 
 	queue<int>  q;
 	
-	vis[src] = true; 
 	dist[src] = 0;
 	q.push(src); 
 
@@ -15,9 +17,8 @@ void BFS(vector<int> adj[], int N, int src)
 		q.pop();
 		 
 		for(auto it:adj[node]){
-		    if(!vis[it]){
+		    if(dist[node] + 1 < dist[it]){
 		        dist[it]=dist[node]+1;
-		        vis[it]=1;
 		        q.push(it);
 		    }
 		} 
