@@ -38,9 +38,13 @@ int main(){
         mstSet[u] = true; 
         ansWeight += mini; 
         
-        for (auto it : adj[u]) 
-            if (mstSet[it.first] == false && it.second < key[it.first]) 
-                parent[it.first] = u, key[it.first] = it.second; 
+        for (auto it : adj[u]) {
+            int v = it.first;
+            int weight = it.second;
+            if (mstSet[v] == false && weight < key[v]) 
+                parent[v] = u, key[v] = weight; 
+        }
+            
     } 
     
     cout << ansWeight << endl; 
