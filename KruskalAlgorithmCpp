@@ -24,10 +24,10 @@ void unionn(int u, int v, vector<int> &parent, vector<int> &size) {
     u = findPar(u, parent);
     v = findPar(v, parent);
     if(size[u] < size[v]) {
-        parent[v] = u;
+        parent[u] = v;
         size[v] += size[u]; 
     } else {
-        parent[u] = v; 
+        parent[v] = u; 
         size[u] += size[v]; 
     }
 }
