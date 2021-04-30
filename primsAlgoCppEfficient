@@ -39,8 +39,8 @@ int main(){
             int weight = it.second;
             if (mstSet[v] == false && weight < key[v]) {
                 parent[v] = u;
-                pq.push({key[v], v}); 
-                key[v] = weight; 
+		key[v] = weight; 
+                pq.push({key[v], v});    
             }
         }
             
