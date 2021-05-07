@@ -36,7 +36,6 @@ int main(){
                 mini = key[v], u = v; 
                 
         mstSet[u] = true; 
-        ansWeight += mini; 
         
         for (auto it : adj[u]) {
             int v = it.first;
@@ -47,7 +46,6 @@ int main(){
             
     } 
     
-    cout << ansWeight << endl; 
     
     for (int i = 1; i < N; i++) 
         cout << parent[i] << " - " << i <<" \n"; 
