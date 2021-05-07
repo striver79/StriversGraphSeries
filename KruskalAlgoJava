@@ -34,7 +34,7 @@ class Main
 {
 	private int findPar(int u, int parent[]) {
 		if(u==parent[u]) return u;
-		return findPar(parent[u], parent); 
+		return parent[u] = findPar(parent[u], parent); 
 	}
 	private void union(int u, int v, int parent[], int size[]) {
 		u = findPar(u, parent); 
