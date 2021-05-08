@@ -1,65 +1,61 @@
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-class GFG
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine().trim());
-        while(T-->0)
-        {
-            String[] s = br.readLine().trim().split(" ");
-            int V = Integer.parseInt(s[0]);
-            int E = Integer.parseInt(s[1]);
-            ArrayList<ArrayList<Integer>>adj = new ArrayList<>();
-            for(int i = 0; i < V; i++)
-                adj.add(i, new ArrayList<Integer>());
-            for(int i = 0; i < E; i++){
-                String[] S = br.readLine().trim().split(" ");
-                int u = Integer.parseInt(S[0]);
-                int v = Integer.parseInt(S[1]);
-                adj.get(u).add(v);
-                adj.get(v).add(u);
-            }
-            Solution obj = new Solution();
-            boolean ans = obj.isCycle(V, adj);
-            if(ans)
-                System.out.println("1");
-            else
-                System.out.println("0");
-        }
-    }
-}// } Driver Code Ends
+import java.util.ArrayList;
 
+public class DFS_Cycle {
 
-class Solution
-{
-    public boolean checkForCycle(int node, int parent, boolean vis[], ArrayList<ArrayList<Integer>> adj) {
-        vis[node] = true; 
-        for(Integer it: adj.get(node)) {
-            if(vis[it] == false) {
-                if(checkForCycle(it, node, vis, adj) == true) 
-                    return true; 
-            }
-            else if(it!=parent) 
-                return true; 
-        }
-        
-        return false; 
+    static void addEdge(ArrayList<ArrayList<Integer>> adjacent, int from, int to){
+        adjacent.get(from).add(to);
+        adjacent.get(to).add(from);
     }
-    // 0-based indexing Graph
-    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj)
-    {
-        boolean vis[] = new boolean[V];
-        
-        for(int i = 0;i<V;i++) {
-            if(vis[i] == false) {
-                if(checkForCycle(i, -1, vis, adj))
-                    return true; 
+
+    static void isCycle(ArrayList<ArrayList<Integer>> adjacent){
+        int component = 0;
+        boolean visited[] = new boolean[adjacent.size()];
+        ArrayList<Integer> DFS_List = new ArrayList<Integer>();
+        for(int i=0; i<adjacent.size(); i++){
+            if(visited[i]==false){
+                System.out.println("Component "+(++component)+" has Cycle: "+DFS_Cycle(i,adjacent,visited,DFS_List));
             }
         }
-        
-        return false; 
+        System.out.println(DFS_List);
+    }
+
+    static boolean DFS_Cycle(int node, ArrayList<ArrayList<Integer>> adjacent, boolean visited[], ArrayList<Integer> DFS_List){
+        DFS_List.add(node);
+        visited[node] = true;
+        for(Integer it : adjacent.get(node)){
+            if(visited[it] == false){
+                if(DFS_Cycle(it,adjacent,visited, DFS_List)==false){
+                    return false;
+                }
+            }
+            else if(node == it){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String args[]){
+        int vertex = 15;
+        ArrayList<ArrayList<Integer>> adjacent = new ArrayList<ArrayList<Integer>>();
+        for(int i=0; i<vertex; i++){
+            adjacent.add(new ArrayList<Integer>());
+        }
+
+        addEdge(adjacent,0,1);
+        addEdge(adjacent,0,2);
+        addEdge(adjacent,2,3);
+        addEdge(adjacent,2,4);
+        addEdge(adjacent,2,5);
+        addEdge(adjacent,5,6);
+        addEdge(adjacent,7,8);
+        addEdge(adjacent,8,11);
+        addEdge(adjacent,9,10);
+        addEdge(adjacent,10,13);
+        addEdge(adjacent,11,12);
+        addEdge(adjacent,12,14);
+        addEdge(adjacent,13,14);
+
+        isCycle(adjacent);
     }
 }
