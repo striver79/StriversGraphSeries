@@ -27,7 +27,7 @@ int main(){
     key[0] = 0; 
     parent[0] = -1; 
     pq.push({0, 0});
-    for (int count = 0; count < N - 1; count++)
+    while(!pq.empty())
     { 
         int u = pq.top().second; 
         pq.pop(); 
