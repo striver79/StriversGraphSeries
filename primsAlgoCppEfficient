@@ -27,6 +27,7 @@ int main(){
     key[0] = 0; 
     parent[0] = -1; 
     pq.push({0, 0});
+    // Run the loop till all the nodes have been visited
     while(!pq.empty())
     { 
         int u = pq.top().second; 
