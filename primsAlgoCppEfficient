@@ -28,6 +28,19 @@ int main(){
     parent[0] = -1; 
     pq.push({0, 0});
     // Run the loop till all the nodes have been visited
+    // because in the brute code we checked for mstSet[node] == false while computing the minimum
+    // but here we simply take the minimal from the priority queue, so a lot of times a node might be taken twice
+    // hence its better to keep running till all the nodes have been taken. 
+    // try the following case: 
+    // Credits: Srejan Bera
+    // 6 7 
+    // 0 1 5 
+    // 0 2 10 
+    // 0 3 100 
+    // 1 3 50 
+    // 1 4 200
+    // 3 4 250
+    // 4 5 50 
     while(!pq.empty())
     { 
         int u = pq.top().second; 
