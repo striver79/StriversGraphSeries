@@ -36,26 +36,29 @@ class Main
 		if(u==parent[u]) return u;
 		return parent[u] = findPar(parent[u], parent); 
 	}
-	private void union(int u, int v, int parent[], int size[]) {
+	private void union(int u, int v, int parent[], int rank[]) {
 		u = findPar(u, parent); 
 		v = findPar(v, parent);
-		if(size[u] < size[v]) {
-			size[v] += size[u];
-			parent[u] = v; 
-		} else {
-			size[u] += size[v];
-			parent[v] = u; 
-		}
+		if(rank[u] < rank[v]) {
+        	parent[u] = v;
+        }
+        else if(rank[v] < rank[u]) {
+        	parent[v] = u; 
+        }
+        else {
+        	parent[v] = u;
+        	rank[u]++; 
+        }
 	}
     void KruskalAlgo(ArrayList<Node> adj, int N)
     {
         Collections.sort(adj, new SortComparator());
         int parent[] = new int[N]; 
-        int size[] = new int[N];
+        int rank[] = new int[N];
 
         for(int i = 0;i<N;i++) {
         	parent[i] = i; 
-        	size[i] = 0; 
+        	rank[i] = 0; 
         }
 
         int costMst = 0;
@@ -64,7 +67,7 @@ class Main
         	if(findPar(it.getU(), parent) != findPar(it.getV(), parent)) {
         		costMst += it.getWeight(); 
         		mst.add(it); 
-        		union(it.getU(), it.getV(), parent, size); 
+        		union(it.getU(), it.getV(), parent, rank); 
         	}
         } 
         System.out.println(costMst);
