@@ -17,6 +17,7 @@ bool checkBipartite(vector<int> adj[], int n) {
     memset(color, -1, sizeof color); 
     for(int i = 0;i<n;i++) {
         if(color[i] == -1) {
+            color[i] = 1;
             if(!bipartiteDfs(i, adj, color)) {
                 return false;
             }
