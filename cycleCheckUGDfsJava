@@ -42,7 +42,7 @@ class Solution
                 if(checkForCycle(it, node, vis, adj) == true) 
                     return true; 
             }
-            else if(it!=parent) 
+            else if(it!=node) 
                 return true; 
         }
         
