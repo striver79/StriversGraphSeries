@@ -39,7 +39,7 @@ class Main
 
         key[0] = 0;
         parent[0] = -1; 
-        pq.add(new Node(key[0], 0)); 
+        pq.add(new Node(0, key[0])); 
 		// Run the loop till all the nodes have been visited
 	    // because in the brute code we checked for mstSet[node] == false while computing the minimum
 	    // but here we simply take the minimal from the priority queue, so a lot of times a node might be taken twice
