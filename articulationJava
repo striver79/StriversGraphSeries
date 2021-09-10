@@ -22,7 +22,7 @@ class Main
 				low[node] = Math.min(low[node], tin[it]); 
 			}
 		}
-		if(parent != -1 && child > 1) isArticulation[node] = 1;  
+		if(parent == -1 && child > 1) isArticulation[node] = 1;  
 	}
     void printBridges(ArrayList<ArrayList<Integer>> adj, int n)
     {
