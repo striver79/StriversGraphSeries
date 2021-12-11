@@ -17,7 +17,7 @@ public:
 	            q.push(i); 
 	        }
 	    }
-	    vector<int> topo
+	    vector<int> topo;
 	    while(!q.empty()) {
 	        int node = q.front(); 
 	        q.pop(); 
