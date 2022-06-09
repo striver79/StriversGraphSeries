@@ -17,7 +17,7 @@
     	{ 
     		int node = q.poll();  
     		 
-    		for(int it:adj.get(u)){
+    		for(int it:adj.get(node)){
     		    if(dist[node] + 1 < dist[it]){
     		        dist[it] = dist[node] + 1;
     		        q.add(it);
