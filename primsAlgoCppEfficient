@@ -45,7 +45,10 @@ int main(){
     { 
         int u = pq.top().second; 
         pq.pop(); 
-        
+        if(mstSet[u])continue;
+	// this will check if we already checked the minimum edges using that node, 
+	// and will not go again because minimum of them is already being taken
+	// thus saving us some extra time.
         mstSet[u] = true; 
         
         for (auto it : adj[u]) {
